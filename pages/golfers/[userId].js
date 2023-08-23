@@ -1,24 +1,16 @@
 import { useState, useEffect } from 'react'
-import useScores from '../../lib/useScores'
+import useUsersScore from '../../lib/useUsersScore'
 import Layout from '../../components/Layout'
 import { getUserId, getUsername } from '../../lib/userAuth'
 
 function GolfersDetails() {
-  const { scores } = useScores()
 
-  const [ userId, setUserId ] = useState('')
   const [ userName, setUsername ] = useState('')
-  const [ userScores, setUserScores ] = useState([])
+  const [ userId, setUserId ] = useState(getUserId())
+  const { scores } = useUsersScore(userId)
 
   useEffect(() => {
-    const tmpUserId = getUserId()
-    setUserId(tmpUserId)
     setUsername(getUsername())
-
-    const filteredScore =
-      scores && scores.filter(score => score.user_id === tmpUserId)
-
-    setUserScores(filteredScore)
   }, [])
 
   return (
@@ -34,8 +26,8 @@ function GolfersDetails() {
             </tr>
           </thead>
           <tbody>
-            {userScores &&
-              userScores.map(score => (
+            {scores &&
+              scores.map(score => (
                 <tr className="w-auto" key={score.id}>
                   <td className="border border-slate-600 p-5">
                     {score.played_at}
