@@ -1,24 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import useUsersScore from '../../lib/useUsersScore'
 import Layout from '../../components/Layout'
-import { getUserId, getUsername } from '../../lib/userAuth'
 
 function GolfersDetails() {
-
-  const [ userName, setUsername ] = useState('')
-  const [ userId, setUserId ] = useState('')
+  const router = useRouter()
+  const { userId } = router.query
   const { scores } = useUsersScore(userId)
-
-  useEffect(() => {
-    setUserId(getUserId())
-    setUsername(getUsername())
-  }, [])
 
   return (
     <Layout>
       <div className="flex items-center flex-col">
-        <h1 className="text-2xl my-8">{`Hello ${userName}`}</h1>
-        <p className="p-5 text-xl">Here are your scores:</p>
+        <p className="p-5 text-xl">Here are {scores && scores[0].user_name} scores:</p>
         <table className="table-auto border border-spacing-2 border-slate-500">
           <thead>
             <tr>
