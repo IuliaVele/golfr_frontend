@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
-const Users = ({ userId, userName }) =>
+const UserCard = ({ userId, userName }) =>
   (
     <div className="flex flex-row p-3 my-4 shadow-md lg:w-1/3 md:w-1/2">
       <div className="w-5/6">
-        <div>
+        <p>
           {userName}
-        </div>
+        </p>
       </div>
       <div className="w-1/6">
         <div className="flex items-center justify-center h-full w-full">
@@ -16,4 +16,4 @@ const Users = ({ userId, userName }) =>
     </div>
   )
 
-export default Users
+export default UserCard

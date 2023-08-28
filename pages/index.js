@@ -1,14 +1,15 @@
 import Layout from '../components/Layout'
 import ScorePostWidget from '../components/ScorePostWidget'
 import ScoreCard from '../components/ScoreCard'
-import Users from '../components/Users'
+import UserCard from '../components/UserCard'
 import useScores from '../lib/useScores'
 
 const Home = () => {
   const { scores, error } = useScores()
 
   const usersIds = scores &&
-    [ ...new Map(scores.map(score => [ score.user_id, score.user_name ]).values()) ]
+    [ ...new Map(scores.map(score => [ score.user_id, score.user_name ])) ]
+  // scores.map(score => [ score.user_id, score.user_name ]).values()
 
   return (
     <Layout>
@@ -19,7 +20,7 @@ const Home = () => {
           <>
             <ScorePostWidget />
             {usersIds && usersIds.map(user => (
-              <Users
+              <UserCard
                 key={user[0]}
                 userId={user[0]}
                 userName={user[1]}
