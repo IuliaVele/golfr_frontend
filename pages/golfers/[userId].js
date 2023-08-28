@@ -6,10 +6,11 @@ import { getUserId, getUsername } from '../../lib/userAuth'
 function GolfersDetails() {
 
   const [ userName, setUsername ] = useState('')
-  const [ userId, setUserId ] = useState(getUserId())
+  const [ userId, setUserId ] = useState('')
   const { scores } = useUsersScore(userId)
 
   useEffect(() => {
+    setUserId(getUserId())
     setUsername(getUsername())
   }, [])
 
