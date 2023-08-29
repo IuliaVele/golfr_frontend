@@ -9,7 +9,6 @@ const Home = () => {
 
   const usersIds = scores &&
     [ ...new Map(scores.map(score => [ score.user_id, score.user_name ])) ]
-  // scores.map(score => [ score.user_id, score.user_name ]).values()
 
   return (
     <Layout>
